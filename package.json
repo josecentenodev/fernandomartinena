@@ -13,13 +13,17 @@
     "@fontsource/bebas-neue": "^5.0.20",
     "@fontsource/old-standard-tt": "^5.0.20",
     "@midudev/tailwind-animations": "^0.0.7",
+    "@uploadthing/react": "^6.6.0",
     "embla-carousel": "^8.1.3",
     "embla-carousel-autoplay": "^8.1.3",
     "embla-carousel-fade": "^8.1.3",
     "embla-carousel-react": "^8.1.3",
+    "mongoose": "^8.4.1",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "svix": "^1.24.0",
+    "uploadthing": "^6.12.0"
   },
   "devDependencies": {
     "@types/node": "^20",
