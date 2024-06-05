@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/navbar/navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import Banner from "@/components/banner/banner";
-import "./globals.css";
+import "../globals.css";
 import "@fontsource/bebas-neue";
 
 
