@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar/navbar";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import Banner from "@/components/banner/banner";
-import "../globals.css";
+import "./globals.css";
+import "@mantine/core/styles.css";
 import "@fontsource/bebas-neue";
-
 
 export const metadata: Metadata = {
   title: "Fernando Martinena",
@@ -19,10 +20,15 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <ColorSchemeScript />
+        </head>
         <body className="bg-white">
-          <Navbar />
-          <Banner />
-          {children}
+          <MantineProvider>
+            <Navbar />
+            <Banner />
+            {children}
+          </MantineProvider>
         </body>
       </html>
     </ClerkProvider>

@@ -8,5 +8,5 @@ module.exports = withUt({
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  plugins: [require("daisyui"), animations],
+  plugins: [animations],
 });
