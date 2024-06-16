@@ -20,6 +20,7 @@ const UserButtons = () => {
           component={Link}
           href="/sign-in"
           color="#212121"
+          w={250}
         >
           Login
         </Button>
