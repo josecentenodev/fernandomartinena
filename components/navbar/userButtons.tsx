@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button } from "@mantine/core";
 
 const UserButtons = () => {
@@ -16,14 +16,7 @@ const UserButtons = () => {
         />
       </SignedIn>
       <SignedOut>
-        <Button
-          component={Link}
-          href="/sign-in"
-          color="#212121"
-          w={250}
-        >
-          Login
-        </Button>
+        <SignInButton />
       </SignedOut>
     </div>
   );
