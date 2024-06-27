@@ -3,6 +3,7 @@ import { headers } from 'next/headers'
 import { WebhookEvent, clerkClient } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { NextResponse } from 'next/server'
+import { CreateUserParams } from '@/types'
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
@@ -47,12 +48,13 @@ export async function POST(req: Request) {
   if(eventType === 'user.created') {
     const { id, email_addresses, image_url, first_name, last_name } = evt.data;
 
-    const user = {
+    const user: CreateUserParams = {
       clerkId: id,
       email: email_addresses[0].email_address,
       firstName: first_name!,
       lastName: last_name!,
       photo: image_url,
+      userType: 'customer'
     }
 
     const newUser = await createUser(user);
@@ -60,7 +62,10 @@ export async function POST(req: Request) {
     if(newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
-          userId: newUser._id
+          userId: newUser._id,
+        },
+        privateMetadata: {
+          userType: newUser.userType,
         }
       })
     }

@@ -4,8 +4,8 @@ const BlogPostSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   authorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  imageUrl: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
 });
 
 // Índices
