@@ -16,6 +16,7 @@
     "@mantine/form": "^7.10.1",
     "@mantine/hooks": "^7.10.1",
     "@mantine/modals": "^7.10.1",
+    "@mantine/notifications": "^7.11.0",
     "@midudev/tailwind-animations": "^0.0.7",
     "@uploadthing/react": "^6.6.0",
     "embla-carousel": "^8.1.3",

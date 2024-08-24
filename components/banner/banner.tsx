@@ -5,6 +5,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import Fade from "embla-carousel-fade";
 import Autoplay from 'embla-carousel-autoplay'
 import { DotButton, useDotButton } from "./dotButtons";
+import Image from "next/image";
+import './embla.css'
 
 const OPTIONS: EmblaOptionsType = { loop: true, duration: 30 };
 const SLIDES = [
@@ -34,10 +36,12 @@ const EmblaCarousel: React.FC = () => {
               className="embla__slide"
               key={img.id}
             >
-              <img
+              <Image
                 className="embla__slide__img"
                 src={`https://picsum.photos/600/350?v=${img.src}`}
                 alt="Your alt text"
+                width={600}
+                height={350}
               />
             </div>
           ))}

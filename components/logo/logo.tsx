@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import SocialMediaIcons from "./socialmedia";
+import SocialMediaIcons from "../navbar/socialmedia";
 
 const Logo = () => {
   const [isShown, setIsShown] = useState(false);

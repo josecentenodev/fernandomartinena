@@ -1,13 +1,18 @@
 import IllustrationGrid from "@/components/illustration/IllustrationGrid";
 import { getAllIllustrations } from "@/lib/actions/illustration.actions";
+import Navbar from "@/components/navbar/navbar";
+import Banner from "@/components/banner/banner";
 
 export default async function Home() {
+  const illustrations = await getAllIllustrations();
 
-  const illustrations = await getAllIllustrations()
-  
   return (
-    <main className="min-h-screen pt-10 flex justify-center items-center w-full">
-      {illustrations && <IllustrationGrid illustrations={illustrations} />}
-    </main>
+    <>
+      <Navbar />
+      <Banner />
+      <main className="min-h-screen pt-10 flex justify-center items-center w-full">
+        {illustrations && <IllustrationGrid illustrations={illustrations} />}
+      </main>
+    </>
   );
 }
