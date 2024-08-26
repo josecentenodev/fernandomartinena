@@ -11,6 +11,12 @@ importers:
       '@auth/prisma-adapter':
         specifier: ^1.6.0
         version: 1.6.0(@prisma/client@5.18.0(prisma@5.18.0))
+      '@fontsource/bebas-neue':
+        specifier: ^5.0.21
+        version: 5.0.21
+      '@fontsource/old-standard-tt':
+        specifier: ^5.0.21
+        version: 5.0.21
       '@mantine/core':
         specifier: ^7.12.1
         version: 7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -23,9 +29,15 @@ importers:
       '@mantine/hooks':
         specifier: ^7.12.1
         version: 7.12.1(react@18.3.1)
+      '@mantine/modals':
+        specifier: ^7.12.1
+        version: 7.12.1(@mantine/core@7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.12.1(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/notifications':
         specifier: ^7.12.1
         version: 7.12.1(@mantine/core@7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.12.1(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@midudev/tailwind-animations':
+        specifier: ^0.0.7
+        version: 0.0.7(tailwindcss@3.4.10)
       '@prisma/client':
         specifier: ^5.14.0
         version: 5.18.0(prisma@5.18.0)
@@ -189,6 +201,12 @@ packages:
   '@floating-ui/utils@0.2.7':
     resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
 
+  '@fontsource/bebas-neue@5.0.21':
+    resolution: {integrity: sha512-F70ux0JvCY3leBi4M8y6rVa9IVzWc7FEeyRkYrthRixQnJEidBJrjjSfXbFOaKdN7MbL+j/sHg00oN+5G46Apw==}
+
+  '@fontsource/old-standard-tt@5.0.21':
+    resolution: {integrity: sha512-JH3uITqNkZ/mam2h3q75+LhVrVyMsNP+pUvx4GbRgADZkeINJrKbN5aFWK+PhETF+nimyTFXH4ywqy404WEyjQ==}
+
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -250,6 +268,14 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
+  '@mantine/modals@7.12.1':
+    resolution: {integrity: sha512-olS07yDcCFLGylLGaQgBiTnKcRrUZVLKqBFBw5glcmc/wZmJf4SDMgx5mxSwBnsbJOwJ2d3aIYwO/qNTNnluSg==}
+    peerDependencies:
+      '@mantine/core': 7.12.1
+      '@mantine/hooks': 7.12.1
+      react: ^18.2.0
+      react-dom: ^18.2.0
+
   '@mantine/notifications@7.12.1':
     resolution: {integrity: sha512-YIV2ItCRJzbOjEyXtz5Rjf3qn6kwmcz6CqAGurpd+kecxx6wwNoKuKs6YNlz7tcprFegcH/hCUkW2tVbXHKVBA==}
     peerDependencies:
@@ -262,6 +288,11 @@ packages:
     resolution: {integrity: sha512-zIzYEheEyXchPTNKsm88BJ0CTEZV6ZNwMhMDWHKQE3CzjKLJdKHJdIBcZImRU3Pn4GROZdZdIkQF9HLJ6BjvYw==}
     peerDependencies:
       react: ^18.2.0
+
+  '@midudev/tailwind-animations@0.0.7':
+    resolution: {integrity: sha512-K897X4NvM3tV2/R7aCjl6gJ6msWSTqQtcAwb5VX5D5+m/Mo650mEFoeODwqzaePYNro5BTGyXXFQw/kiHBZlUA==}
+    peerDependencies:
+      tailwindcss: ^3.0.0
 
   '@next/env@14.2.6':
     resolution: {integrity: sha512-bs5DFKV+08EjWrl8EB+KKqev1ZTNONH1vFCaHh911aaB362NnP32UDTbE9VQhyiAgbFqJsfDkSxFERNDDb3j0g==}
@@ -2198,6 +2229,10 @@ snapshots:
 
   '@floating-ui/utils@0.2.7': {}
 
+  '@fontsource/bebas-neue@5.0.21': {}
+
+  '@fontsource/old-standard-tt@5.0.21': {}
+
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -2269,6 +2304,13 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@mantine/modals@7.12.1(@mantine/core@7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.12.1(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@mantine/core': 7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 7.12.1(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   '@mantine/notifications@7.12.1(@mantine/core@7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.12.1(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@mantine/core': 7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2281,6 +2323,10 @@ snapshots:
   '@mantine/store@7.12.1(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@midudev/tailwind-animations@0.0.7(tailwindcss@3.4.10)':
+    dependencies:
+      tailwindcss: 3.4.10
 
   '@next/env@14.2.6': {}
 

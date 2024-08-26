@@ -1,14 +1,15 @@
 import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
-
+import "@fontsource/bebas-neue";
+import "@fontsource/old-standard-tt"
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
-
-import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "@/trpc/react";
+import { Navbar } from "./_components";
+
 
 export const metadata: Metadata = {
   title: "Fernando Martinena Portfolio Web",
@@ -21,7 +22,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html lang="en">
       <head>
         <ColorSchemeScript />
       </head>
@@ -29,7 +30,10 @@ export default function RootLayout({
         <MantineProvider>
           <TRPCReactProvider>
             <Notifications />
-            <ModalsProvider>{children}</ModalsProvider>
+            <ModalsProvider>
+              <Navbar />
+              {children}
+            </ModalsProvider>
           </TRPCReactProvider>
         </MantineProvider>
       </body>
