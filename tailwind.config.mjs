@@ -1,4 +1,3 @@
-import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import animations from '@midudev/tailwind-animations'
 
@@ -12,4 +11,4 @@ export default {
     },
   },
   plugins: [ animations ],
-} satisfies Config;
+}

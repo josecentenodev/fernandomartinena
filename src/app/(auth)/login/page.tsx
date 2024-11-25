@@ -1,5 +1,6 @@
 "use client";
 
+import { authenticateUser } from "@/services/auth";
 import {
   Box,
   Button,
@@ -15,7 +16,6 @@ import {
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
-import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -40,19 +40,32 @@ const LoginPage = () => {
     },
   });
 
-  const handleSubmit = async (values: FormData) => {
+  const handleSubmit = (values: {email: string, password: string}) => {
     setCargando(true);
-    const login = await signIn("credentials", { ...values, redirect: false });
-    setCargando(false);
-    if (login!.status == 200) {
-      return router.push("/");
-    }
-    showNotification({
-      title: "Credenciales incorrectas",
-      message: "El correo electrónico o la contraseña son incorrectos.",
-      color: "red",
+    authenticateUser(values.email, values.password)
+    .then((result) => {
+      setCargando(false);
+      if (result.success) {
+        router.push("/");
+      } else {
+        showNotification({
+          title: "Credenciales incorrectas",
+          message: result.message,
+          color: "red",
+        });
+      }
+    })
+    .catch((error) => {
+      setCargando(false);
+      showNotification({
+        title: "Error inesperado",
+        message: "Ocurrió un error al iniciar sesión. Inténtalo nuevamente.",
+        color: "red",
+      });
+      console.error("Error durante la autenticación:", error);
     });
-  };
+};
+
 
   return (
     <Container h={"100vh"} className="flex items-center justify-center">
