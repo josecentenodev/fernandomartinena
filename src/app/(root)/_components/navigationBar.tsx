@@ -1,10 +1,10 @@
 import React from "react";
 import { NavBarLinks, Logo, UserButtons } from ".";
 
-const NavBar = () => {
+const Navbar = () => {
   return (
     <header>
-      <nav className="flex h-24 w-full items-center justify-center px-10 shadow-sm fixed z-50 bg-white">
+      <nav className="flex h-24 w-full items-center justify-center px-10 shadow-sm fixed">
         <Logo />
         <NavBarLinks />
         <UserButtons />
@@ -13,4 +13,4 @@ const NavBar = () => {
   );
 };
 
-export { NavBar };
+export { Navbar };
