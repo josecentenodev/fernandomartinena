@@ -79,19 +79,6 @@ model Post {
   updatedAt DateTime @updatedAt
 }
 
-
-// Modelo para servicios
-model Service {
-  id        String   @id @default(uuid())
-  name      String
-  description String
-  price     Float
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 // Modelo para likes
 model Like {
   id         String   @id @default(uuid())
@@ -122,10 +109,60 @@ model Product {
   description String?
   price     Float
   images    String[] // Pueden haber múltiples imágenes por producto
-  user      User     @relation(fields: [userId], references: [id])
   userId    String
+  promotionId String
+  user      User     @relation(fields: [userId], references: [id])
+    promotion Promotion @relation(fields: [promotionId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// Modelo para servicios
+model Service {
+  id        String   @id @default(uuid())
+  name      String
+  description String
+  price     Float
+  userId    String
+  promotionId String
+  user      User     @relation(fields: [userId], references: [id])
+  promotion Promotion @relation(fields: [promotionId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Promotion {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  discount    Float    // Porcentaje de descuento
+  startDate   DateTime
+  endDate     DateTime
+  products    Product[]
+  services    Service[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Modelo para banners personalizados
+model BannerImage {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  imageUrl    String
+  category    BannerCategory
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Enum para categorías de banners
+enum BannerCategory {
+  ARTWORKS
+  SERVICES
+  PRODUCTS
+  EVENTS
+  NEWS
+  CUSTOM
 }
 
 enum UserType {

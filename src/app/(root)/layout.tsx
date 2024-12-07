@@ -1,3 +1,4 @@
+import '@mantine/carousel/styles.css';
 import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
@@ -8,7 +9,7 @@ import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "@/trpc/react";
-import { Navbar } from "./_components";
+import { NavBar } from "./_components";
 
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function RootLayout({
           <TRPCReactProvider>
             <Notifications />
             <ModalsProvider>
-              <Navbar />
+              <NavBar />
               {children}
             </ModalsProvider>
           </TRPCReactProvider>
