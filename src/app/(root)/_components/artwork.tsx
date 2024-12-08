@@ -1,30 +1,26 @@
-'use client'
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+"use client";
+import { Card, Image, Text, Badge, Button, Group, Stack } from "@mantine/core";
 
-const Artwork = () => {
-  return <Card shadow="sm" padding="lg" radius="md" withBorder>
-  <Card.Section>
-    <Image
-      src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-      height={160}
-      alt="Norway"
-    />
-  </Card.Section>
+const Artwork = ({ src }: { src: string }) => {
+  return (
+    <Card shadow="sm" padding="lg" radius="md" withBorder>
+      <Card.Section>
+        <Image src={src} height={160} alt="Norway" />
+      </Card.Section>
+      <Stack justify="space-between" h="100%">
+        <Stack gap={'sm'}>
+          <Group justify="space-between" mt="md" mb="xs">
+            <Text fw={500}>Artwork title</Text>
+            <Badge color="pink">On Sale</Badge>
+          </Group>
 
-  <Group justify="space-between" mt="md" mb="xs">
-    <Text fw={500}>Norway Fjord Adventures</Text>
-    <Badge color="pink">On Sale</Badge>
-  </Group>
-
-  <Text size="sm" c="dimmed">
-    With Fjord Tours you can explore more of the magical fjord landscapes with tours and
-    activities on and around the fjords of Norway
-  </Text>
-
-  <Button color="blue" fullWidth mt="md" radius="md">
-    Buy
-  </Button>
-</Card>
+          <Text size="sm" c="dimmed">
+            El famosisimo Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae enim tempora, repellendus odio aliquam impedit alias eligendi provident fugiat facilis dignissimos eveniet eos necessitatibus laudantium saepe culpa cum natus?
+          </Text>
+        </Stack>
+      </Stack>
+    </Card>
+  );
 };
 
 export { Artwork };

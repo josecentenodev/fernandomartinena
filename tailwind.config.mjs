@@ -1,7 +1,8 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
 import animations from '@midudev/tailwind-animations'
+import { withUt } from "uploadthing/tw";
 
-export default {
+export default withUt({
   content: ["./src/**/*.tsx"],
   theme: {
     extend: {
@@ -11,4 +12,4 @@ export default {
     },
   },
   plugins: [ animations ],
-}
+})

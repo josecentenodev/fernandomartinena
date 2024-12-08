@@ -11,7 +11,7 @@ const Banner = () => {
         <Link href={'#'}>
         <Image
           radius="md"
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png"
+          src="https://cdnb.artstation.com/p/users/covers/001/688/459/default/3ebd3ca7ba6a52e3b76558c8578ff100.jpg?1692994154"
           alt="Logo Carousel"
         />
         </Link>
@@ -19,14 +19,14 @@ const Banner = () => {
       <Carousel.Slide>
         <Image
           radius="md"
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png"
+          src="https://cdnb.artstation.com/p/users/covers/001/688/459/default/3ebd3ca7ba6a52e3b76558c8578ff100.jpg?1692994154"
           alt="Logo Carousel"
         />
       </Carousel.Slide>
       <Carousel.Slide>
         <Image
           radius="md"
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png"
+          src="https://cdnb.artstation.com/p/users/covers/001/688/459/default/3ebd3ca7ba6a52e3b76558c8578ff100.jpg?1692994154"
           alt="Logo Carousel"
         />
       </Carousel.Slide>
