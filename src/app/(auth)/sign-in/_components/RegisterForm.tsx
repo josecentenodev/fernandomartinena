@@ -1,12 +1,32 @@
 "use client";
 import { api } from "@/trpc/react";
-import { Button, PasswordInput, TextInput } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Group,
+  LoadingOverlay,
+  PasswordInput,
+  Stack,
+  Text,
+  TextInput,
+  Title,
+} from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { useForm, zodResolver } from "@mantine/form";
-import { type CrearRegistro, CrearRegistroSchema, type Registrar } from "@/types/register";
-
+import {
+  type CrearRegistro,
+  CrearRegistroSchema,
+  type Registrar,
+} from "@/types/register";
+import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
+  const router = useRouter()
+  const [cargando, setCargando] = useState(false);
   const { mutate } = api.user.registrar.useMutation({
     onSuccess: () => {
       showNotification({
@@ -15,6 +35,8 @@ const RegisterForm = () => {
         color: "green",
       });
       form.reset();
+      setCargando(false)
+      router.push('/')
     },
     onError: (e) => {
       showNotification({
@@ -24,8 +46,6 @@ const RegisterForm = () => {
       });
     },
   });
-
-
 
   const form = useForm<CrearRegistro>({
     validate: zodResolver(CrearRegistroSchema),
@@ -39,6 +59,7 @@ const RegisterForm = () => {
   });
 
   const handleSubmit = (values: typeof form.values) => {
+    setCargando(true);
     const user: Registrar = {
       name: `${values.nombre}`,
       email: values.email,
@@ -48,40 +69,56 @@ const RegisterForm = () => {
     mutate({ ...user });
   };
   return (
-    <form
-      onSubmit={form.onSubmit(handleSubmit)}
-      className="max-w-[700px] p-5 flex flex-col gap-5"
-    >
-      <TextInput
-        label="Nombre"
-        placeholder="nombre"
-        {...form.getInputProps("nombre")}
+    <Stack justify="center" align="center" pb={"xl"} mt={"-xl"}>
+      <Image
+        src={"/Logo.png"}
+        alt="Fernando Martinena Logo"
+        width={200}
+        height={200}
       />
+      <Card w={500} mx="auto" p="lg" shadow="md" withBorder radius="md">
+        <LoadingOverlay visible={cargando} />
+        <Group justify="center" py="md">
+          <Title order={1}>Registro</Title>
+        </Group>
+        <Box pt="xs">
+          <form
+            onSubmit={form.onSubmit(handleSubmit)}
+            className="flex max-w-[700px] flex-col gap-2 p-5"
+          >
+            <TextInput
+              label="Nombre"
+              placeholder="nombre"
+              {...form.getInputProps("nombre")}
+            />
 
-      <TextInput
-        label="E-mail"
-        name="email"
-        placeholder="correo electrónico"
-        {...form.getInputProps("email")}
-      />
+            <TextInput
+              label="E-mail"
+              name="email"
+              placeholder="correo electrónico"
+              {...form.getInputProps("email")}
+            />
 
-      <PasswordInput
-        label="Contraseña"
-        placeholder="Contraseña"
-        {...form.getInputProps("password")}
-      />
+            <PasswordInput
+              label="Contraseña"
+              placeholder="Contraseña"
+              {...form.getInputProps("password")}
+            />
 
-      <PasswordInput
-        label="Confirmar contraseña"
-        placeholder="Confirmar contraseña"
-        {...form.getInputProps("confirmar")}
-      />
+            <PasswordInput
+              label="Confirmar contraseña"
+              placeholder="Confirmar contraseña"
+              {...form.getInputProps("confirmar")}
+            />
 
-        <Button type="submit" color="#ea5b1b" className="self-start">
-          Registrar
-        </Button>
-    </form>
+            <Button type="submit" color="#ea5b1b" mt={'xl'}>
+              Registrar
+            </Button>
+          </form>
+        </Box>
+      </Card>
+    </Stack>
   );
 };
 
-export { RegisterForm }
+export { RegisterForm };

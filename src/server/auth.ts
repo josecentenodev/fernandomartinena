@@ -4,12 +4,12 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+import { env } from "@/env";
 import { type Adapter } from "next-auth/adapters";
-import CredentialsProvider from "next-auth/providers/credentials"
+import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "@/server/db";
 import bcrypt from "bcrypt";
 import { type UserType } from "@prisma/client";
-
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -27,10 +27,13 @@ declare module "next-auth" {
     } & DefaultSession["user"];
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+    id: string;
+    name: string;
+    email: string;
+    image: string | null;
+    userType: string;
+  }
 }
 
 /**
@@ -40,50 +43,69 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-        name: session.user.name,
-        email: session.user.email,
-        userType: session.user.userType
+    jwt: async ({ token, user }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.userType = user.userType;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      session.user.id = token.id as string;
+      session.user.name = token.name!;
+      session.user.email = token.email!;
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/sign-in",
+    error: "/sign-in",
+  },
+  session: {
+    strategy: "jwt",
+  },
+  secret: env.NEXTAUTH_SECRET,
+  adapter: PrismaAdapter(db) as Adapter,
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "fernandomartinena@gmail.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, _req) {
+        const user = await db.user.findFirst({
+          where: {
+            email: credentials!.email ?? "",
+          },
+        });
+
+        if (!user) throw new Error("Credenciales incorrectas");
+
+        const isValidPassword = bcrypt.compareSync(
+          credentials!.password,
+          user.password,
+        );
+
+        if (!isValidPassword) throw new Error("Credenciales incorrectas");
+
+
+        return {
+          id: user.id,
+          name: user.name ?? "",
+          email: user.email ?? "",
+          image: user.image,
+          userType: user.userType,
+        };
       },
     }),
-  },
-  adapter: PrismaAdapter(db) as Adapter,
-  providers: [CredentialsProvider({
-    name: 'Credentials',
-    credentials: {
-      email: { label: "Email", type: "email", placeholder: "fernandomartinena@gmail.com" },
-      password: { label: "Password", type: "password" }
-    },
-    async authorize(credentials, _req) {
-
-      const user = await db.user.findFirst({
-        where: {
-          email: credentials!.email ?? ''
-        }
-      })
-
-      if(!user) throw new Error("Credenciales incorrectas");
-      
-      const isValidPassword = bcrypt.compareSync(
-        credentials!.password,
-        user.password
-      );
-
-      if (!isValidPassword)
-        throw new Error("Credenciales incorrectas");
-
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        userType: user.userType,
-      }
-    }
-  })],
+  ],
 };
 
 /**

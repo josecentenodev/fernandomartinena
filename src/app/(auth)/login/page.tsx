@@ -112,7 +112,7 @@ const LoginPage = () => {
         <Card w={360} p="lg" withBorder shadow="md">
           <Group justify="center" gap={"xs"}>
             <Text size="sm">Si todavía no tenés cuenta</Text>
-            <Link href="*" passHref className="decoration-transparent">
+            <Link href="/sign-in" passHref className="decoration-transparent">
               registrate aquí
             </Link>
           </Group>
