@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 
 const UserButtons = () => {
   const { data: session } = useSession();
-  console.log(session);
+
   return (
     <div className="absolute right-5 flex w-32 gap-3">
       {session ? (

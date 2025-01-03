@@ -1,17 +1,30 @@
-import Link from 'next/link'
-import React from 'react'
-
+"use client";
+import { UnstyledButton } from "@mantine/core";
+import Link from "next/link";
+import React from "react";
+import { modals } from "@mantine/modals";
+import AboutPage from "./aboutPageModal";
 
 const NavBarLinks = () => {
   return (
-    <div className='flex gap-5 text-2xl'>
-        <Link href='/'>home</Link>
-        <Link href='/about'>about</Link>
-        <Link href='/news'>news</Link>
-        <Link href='/shop'>shop</Link>
-        <Link href='/contact'>contact</Link>
+    <div className="flex gap-5 text-2xl">
+      <Link href="/">home</Link>
+      <UnstyledButton
+        className="bebas text-2xl"
+        onClick={() =>
+          modals.open({
+            size: "2xl",
+            children: <AboutPage />,
+          })
+        }
+      >
+        ABOUT
+      </UnstyledButton>
+      <Link href="/news">news</Link>
+      <Link href="/shop">shop</Link>
+      <Link href="/contact">contact</Link>
     </div>
-  )
-}
+  );
+};
 
-export { NavBarLinks } 
+export { NavBarLinks };

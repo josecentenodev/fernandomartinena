@@ -1,4 +1,4 @@
 export * from './artwork'
 export * from './user'
-export * from './new'
+export * from './post'
 export * from './product'
