@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
 const RegisterForm = () => {
   const router = useRouter()
   const [cargando, setCargando] = useState(false);
-  const { mutate } = api.user.registrar.useMutation({
+  const { mutate } = api.users.registrar.useMutation({
     onSuccess: () => {
       showNotification({
         title: "Registro exitoso",

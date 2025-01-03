@@ -13,11 +13,11 @@ export const artworkRouter = createTRPCRouter({
       z.object({
         title: z.string(),
         description: z.string().optional(),
-        url: z.string().url(),
+        imageUrl: z.string().url(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const { title, description, url } = input;
+      const { title, description, imageUrl } = input;
       const userId = ctx.session.user.id;
 
       try {
@@ -25,7 +25,7 @@ export const artworkRouter = createTRPCRouter({
           data: {
             title,
             description,
-            url,
+            imageUrl,
             userId,
           },
         });
@@ -87,11 +87,11 @@ export const artworkRouter = createTRPCRouter({
         id: z.string(),
         title: z.string().optional(),
         description: z.string().optional(),
-        url: z.string().url().optional(),
+        imageUrl: z.string().url().optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const { id, title, description, url } = input;
+      const { id, title, description, imageUrl } = input;
       const userId = ctx.session.user.id;
 
       try {
@@ -108,7 +108,7 @@ export const artworkRouter = createTRPCRouter({
           data: {
             title,
             description,
-            url,
+            imageUrl,
           },
         });
 
