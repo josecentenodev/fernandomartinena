@@ -1,5 +1,4 @@
-import { Flex, Group, Stack, Text } from "@mantine/core";
-import Image from "next/image";
+import { Image, Group, Stack, Text } from "@mantine/core";
 import React from "react";
 
 const AboutPageModal = () => {
@@ -8,8 +7,8 @@ const AboutPageModal = () => {
       <Image
         src={"/fernando-martinena-ackerman.jpg"}
         alt="Fernando Martinena"
-        width={500}
-        height={500}
+        w={500}
+        h={500}
         className="shadow-xl -rotate-6"
       />
       <Stack flex={1} px={'xl'}>

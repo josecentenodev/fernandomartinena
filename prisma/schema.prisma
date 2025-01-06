@@ -46,6 +46,11 @@ model User {
     name          String?
     email         String?   @unique
     password      String
+    city          String?
+    country       String?
+    address       String?
+    phone         String?
+    postalCode    String?
     emailVerified DateTime?
     createdAt     DateTime                 @default(now())
     updatedAt     DateTime?                @updatedAt
@@ -111,9 +116,9 @@ model Product {
   price     Float
   images    String[] // Pueden haber múltiples imágenes por producto
   userId    String
-  promotionId String
+  promotionId String?
   user      User     @relation(fields: [userId], references: [id])
-  promotion Promotion @relation(fields: [promotionId], references: [id])
+  promotion Promotion? @relation(fields: [promotionId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

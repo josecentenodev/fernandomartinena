@@ -1,9 +1,18 @@
+'use client'
 import React from 'react'
+import EmptyState from '../_components/emptyState'
+import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
+  const router = useRouter()
   return (
-    <div>page</div>
+    <EmptyState
+        title="Página en construcción"
+        description="Estamos trabajando en esta página, por favor vuelve en otra ocasión."
+        action={() => router.push(`/`)}
+        actionLabel="Volver a la página principal"
+      />
   )
 }
 
-export default page
+export default Page

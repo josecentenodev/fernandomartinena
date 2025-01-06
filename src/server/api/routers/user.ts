@@ -54,4 +54,74 @@ export const userRouter = createTRPCRouter({
       });
     }
   }),
+  getAll: protectedProcedure.query(async ({ ctx }) => {
+    const users = await ctx.db.user.findMany();
+    return users;
+  }),
+  getById: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ ctx, input }) => {
+    const { id } = input;
+
+    try {
+      const user = await ctx.db.user.findUnique({
+        where: {
+          id: id,
+        },
+      });
+  
+      if (!user) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Usuario no encontrado.",
+        });
+      }
+  
+      return user;
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: `No se ha podido realizar: ${error as string}`,
+      });
+    }
+  }),
+  update: protectedProcedure.input(z.object({
+    id: z.string(),
+    name: z.string(),
+    email: z.string().email(),
+    city: z.string().optional(),
+    country: z.string().optional(),
+    address: z.string().optional(),
+    phone: z.string().optional(),
+    postalCode: z.string().optional(),
+  })).mutation(async ({ ctx, input }) => {
+    const { id, name, email } = input;
+
+    const isAuthorized = ctx.session.user.id === id || ctx.session.user.userType === 'ADMIN';
+
+    if (!isAuthorized) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "No tienes permisos para realizar esta acción.",
+      });
+    }
+  
+    try {
+      
+      const user = await ctx.db.user.update({
+        where: {
+          id: id,
+        },
+        data: {
+          name,
+          email,
+        },
+      });
+
+      return user;
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: `No se ha podido realizar: ${error as string}`,
+      });
+    }
+  }),
 });

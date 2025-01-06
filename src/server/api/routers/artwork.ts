@@ -7,8 +7,44 @@ import {
 import * as trpc from "@trpc/server";
 
 export const artworkRouter = createTRPCRouter({
-  // Create Artwork
-  createArtwork: protectedProcedure
+  getAll: publicProcedure.query(async ({ ctx }) => {
+    try {
+      return await ctx.db.artwork.findMany({
+        include: {
+          user: true,
+        },
+      });
+    } catch (error) {
+      throw new trpc.TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: `Failed to fetch artworks: ${String(error)}`,
+      });
+    }
+  }),
+  getById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.db.artwork.findUnique({
+          where: {
+            id: input.id,
+          },
+          include: {
+            user: true,
+          },
+        });
+      } catch (error) {
+        throw new trpc.TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `Failed to fetch artwork by ID: ${String(error)}`,
+        });
+      }
+    }),
+  create: protectedProcedure
     .input(
       z.object({
         title: z.string(),
@@ -38,50 +74,7 @@ export const artworkRouter = createTRPCRouter({
         });
       }
     }),
-
-  // Get All Artworks
-  getAllArtworks: publicProcedure.query(async ({ ctx }) => {
-    try {
-      return await ctx.db.artwork.findMany({
-        include: {
-          user: true,
-        },
-      });
-    } catch (error) {
-      throw new trpc.TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: `Failed to fetch artworks: ${String(error)}`,
-      });
-    }
-  }),
-
-  // Get Artwork by ID
-  getArtworkById: publicProcedure
-    .input(
-      z.object({
-        id: z.string(),
-      }),
-    )
-    .query(async ({ ctx, input }) => {
-      try {
-        return await ctx.db.artwork.findUnique({
-          where: {
-            id: input.id,
-          },
-          include: {
-            user: true,
-          },
-        });
-      } catch (error) {
-        throw new trpc.TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: `Failed to fetch artwork by ID: ${String(error)}`,
-        });
-      }
-    }),
-
-  // Update Artwork
-  updateArtwork: protectedProcedure
+  update: protectedProcedure
     .input(
       z.object({
         id: z.string(),
@@ -120,9 +113,7 @@ export const artworkRouter = createTRPCRouter({
         });
       }
     }),
-
-  // Delete Artwork
-  deleteArtwork: protectedProcedure
+  delete: protectedProcedure
     .input(
       z.object({
         id: z.string(),

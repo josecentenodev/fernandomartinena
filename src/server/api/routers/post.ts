@@ -5,12 +5,13 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
-import { db } from "@/server/db";
 import { TRPCError } from "@trpc/server";
 
 export const newRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
-    const posts = await ctx.db.post.findMany();
+    const posts = await ctx.db.post.findMany({
+      orderBy: {  createdAt: "desc" },
+    });
 
     return {
       posts: posts,
@@ -38,6 +39,99 @@ export const newRouter = createTRPCRouter({
             post: null,
           };
         }
+
+        return {
+          post: post,
+        };
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `There was a problem in the server: ${error as string}`,
+        });
+      }
+    }),
+  create: protectedProcedure
+    .input(
+      z.object({
+        title: z.string(),
+        content: z.string(),
+        imageUrl: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        const { title, content, imageUrl } = input;
+
+        const post = await ctx.db.post.create({
+          data: {
+            title,
+            content,
+            imageUrl,
+            authorId: ctx.session.user.id,
+          },
+        });
+
+        return {
+          post: post,
+        };
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `There was a problem in the server: ${error as string}`,
+        });
+      }
+    }),
+
+  update: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+        title: z.string(),
+        content: z.string(),
+        imageUrl: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        const { postId, title, content, imageUrl } = input;
+
+        const post = await ctx.db.post.update({
+          where: {
+            id: postId,
+          },
+          data: {
+            title,
+            content,
+            imageUrl,
+          },
+        });
+
+        return {
+          post: post,
+        };
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `There was a problem in the server: ${error as string}`,
+        });
+      }
+    }),
+
+  delete: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        const { postId } = input;
+
+        const post = await ctx.db.post.delete({
+          where: {
+            id: postId,
+          },
+        });
 
         return {
           post: post,

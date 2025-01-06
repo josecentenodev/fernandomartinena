@@ -123,7 +123,7 @@ const SocialMediaIcons = () => {
           ></path>
         </svg>
       </Link>
-      <Link href="#">
+      <Link href="mailto:fm.artcommissions@gmail.com">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
