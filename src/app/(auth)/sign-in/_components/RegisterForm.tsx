@@ -111,7 +111,7 @@ const RegisterForm = () => {
               {...form.getInputProps("confirmar")}
             />
 
-            <Button type="submit" color="#ea5b1b" mt={'xl'}>
+            <Button type="submit" color="dark" mt={'xl'}>
               Registrar
             </Button>
           </form>

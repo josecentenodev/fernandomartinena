@@ -104,7 +104,7 @@ const LoginPage = () => {
                     ¿Olvidaste la contraseña?
                   </Text>
                 </Link>
-                <Button type="submit">Ingresar</Button>
+                <Button type="submit" color="dark">Ingresar</Button>
               </Group>
             </form>
           </Box>

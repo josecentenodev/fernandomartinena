@@ -9,11 +9,16 @@ import * as trpc from "@trpc/server";
 export const artworkRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     try {
-      return await ctx.db.artwork.findMany({
-        include: {
-          user: true,
-        },
+      const artworks = await ctx.db.artwork.findMany({
+        select: {
+          title: true,
+          description: true,
+          imageUrl: true,
+          createdAt: true,
+        }
       });
+
+      return { artworks };
     } catch (error) {
       throw new trpc.TRPCError({
         code: "INTERNAL_SERVER_ERROR",
