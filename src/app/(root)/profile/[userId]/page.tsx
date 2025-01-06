@@ -1,6 +1,7 @@
 "use client";
 import { api } from "@/trpc/react";
 import React from "react";
+import ProfileInfo from "./_components/profileInfo";
 
 const ProfilePage = ({
   params,
@@ -13,7 +14,7 @@ const ProfilePage = ({
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-12 pt-24">
-      {data?.name}
+      <ProfileInfo name={data?.name ?? 'Unknown and misterious persona'} email={data?.email ?? 'aintno-one@noemail.com'} />
     </main>
   );
 };
