@@ -23,14 +23,17 @@ export const ArtworksTable = () => {
       <Table.Tbody>
         {data?.artworks.map((artwork) => (
           <Table.Tr key={artwork.title}>
-            <Table.Td>
+            <Table.Td miw={192}>
               <Image 
                 src={artwork.imageUrl ? `https://fernandomartinena.vercel.app/${artwork.imageUrl}` : "/placeholder.jpg"}
-                className="w-32 h-32 xl:w-48 xl:h-48 object-cover rounded-md"
+                h={192}
+                w={192}
+                fit="cover"
+                radius="md"
                 alt={artwork.title} 
               />
             </Table.Td>
-            <Table.Td>{artwork.title}</Table.Td>
+            <Table.Td w={200}>{artwork.title}</Table.Td>
             <Table.Td>
               <Text lineClamp={2}>{artwork.description}</Text>
             </Table.Td>
