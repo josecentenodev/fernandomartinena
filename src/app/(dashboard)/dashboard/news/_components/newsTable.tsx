@@ -25,7 +25,7 @@ export const NewsTable = () => {
           <Table.Tr key={post.title}>
             <Table.Td>
               <Image 
-                src={post.imageUrl ?? "/placeholder.jpg"}
+                src={post.imageUrl ? `https://fernandomartinena.vercel.app/${post.imageUrl}` : "/fernando-martinena-ninfa.jpg"}
                 className="w-32 h-32 xl:w-48 xl:h-48 object-cover rounded-md"
                 alt={post.title} 
               />
