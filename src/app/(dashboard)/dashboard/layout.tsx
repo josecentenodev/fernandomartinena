@@ -11,15 +11,15 @@ import { type Metadata } from "next";
 import { TRPCReactProvider } from "@/trpc/react";
 import { SessionProvider } from "@/server/SessionProvider";
 import { getServerAuthSession } from "@/server/auth";
+import { BasicAppShell } from "./_components/appShell";
 
 export const metadata: Metadata = {
-  title: "Fernando Martinena Portfolio Web",
-  description:
-    "Portfolio web de Fernando Martinena, artista digital. Aquí podrás ver mis trabajos, contratar mis servicios y comprar también mis productos.",
+  title: "Dashboard - Fernando Martinena",
+  description: "Panel de administración de Fernando Martinena Portfolio Web",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default async function RootLayout({
+export default async function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const session = await getServerAuthSession();
@@ -35,7 +35,9 @@ export default async function RootLayout({
             <TRPCReactProvider>
               <Notifications />
               <ModalsProvider>
-                {children}
+                <BasicAppShell>
+                  {children}
+                </BasicAppShell>
               </ModalsProvider>
             </TRPCReactProvider>
           </MantineProvider>

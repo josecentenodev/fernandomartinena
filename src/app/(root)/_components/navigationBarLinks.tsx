@@ -10,7 +10,7 @@ const NavBarLinks = () => {
     <div className="flex gap-5 text-2xl">
       <Link href="/">home</Link>
       <UnstyledButton
-        className="bebas text-2xl"
+        className="bebas text-2xl hover:text-primary transition-colors duration-200"
         onClick={() =>
           modals.open({
             size: "2xl",

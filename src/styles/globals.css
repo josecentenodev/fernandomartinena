@@ -2,13 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: "Old Standard TT", serif;
-  color: #212121;
+@layer base {
+  body {
+    @apply font-oldStandard text-secondary bg-white;
+  }
+
+  a {
+    @apply font-bebas transition-colors duration-200 hover:text-primary;
+  }
 }
 
-a {
-  font-family: "Bebas Neue", sans-serif;
+@layer components {
+  .nav-link {
+    @apply text-2xl hover:text-primary transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark transition-colors duration-200;
+  }
+
+  .card {
+    @apply rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200;
+  }
 }
 
 .bebas {

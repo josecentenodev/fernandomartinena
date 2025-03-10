@@ -1,7 +1,9 @@
-import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
+'use client'
+import { AppShell, Burger, Group, Stack, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { NavLinks } from './navLinks';
 
-export function BasicAppShell() {
+export function BasicAppShell({ children }: { children: React.ReactNode }) {
   const [opened, { toggle }] = useDisclosure();
 
   return (
@@ -13,17 +15,17 @@ export function BasicAppShell() {
       <AppShell.Header>
         <Group h="100%" px="md">
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          <Group justify="space-between" style={{ flex: 1 }}>
+            <Text size="lg" fw={500}>Fernando Martinena Admin</Text>
+          </Group>
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">
-        Navbar
-        {Array(15)
-          .fill(0)
-          .map((_, index) => (
-            <Skeleton key={index} h={28} mt="sm" animate={false} />
-          ))}
+        <Stack>
+          <NavLinks />
+        </Stack>
       </AppShell.Navbar>
-      <AppShell.Main>Main</AppShell.Main>
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 }

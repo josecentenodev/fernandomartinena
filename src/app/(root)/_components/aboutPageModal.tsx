@@ -7,9 +7,7 @@ const AboutPageModal = () => {
       <Image
         src={"/fernando-martinena-ackerman.jpg"}
         alt="Fernando Martinena"
-        w={500}
-        h={500}
-        className="shadow-xl -rotate-6"
+        className="shadow-xl -rotate-6 w-64 h-64 xl:w-96 xl:h-96 object-cover"
       />
       <Stack flex={1} px={'xl'}>
         <Stack pr={'xl'}>
@@ -28,16 +26,16 @@ const AboutPageModal = () => {
           </Text>
         </Stack>
         <Stack>
-          <Text className="text-3xl bebas">CLIENTS:</Text>
+          <Text className="text-2xl xl:text-3xl bebas">CLIENTS:</Text>
           <Group justify="flex-start" align="baseline">
             <Stack>
-              <Text className="text-xl text-pink-500">Tidalwave Productions (Comics)</Text>
-              <Text className="text-xl text-pink-500">Acrocomics (Comics)</Text>
-              <Text className="text-xl text-pink-500">Finca los Funes (wines)</Text>
+              <Text className="text-md xl:text-xl text-pink-500">Tidalwave Productions (Comics)</Text>
+              <Text className="text-md xl:text-xl text-pink-500">Acrocomics (Comics)</Text>
+              <Text className="text-md xl:text-xl text-pink-500">Finca los Funes (wines)</Text>
             </Stack>
             <Stack justify="flex-start" align="baseline">
-              <Text className="text-xl text-pink-500">Defcon Juegos (Boardgames)</Text>
-              <Text className="text-xl text-pink-500">Lairen: La historia (Boardgames)</Text>
+              <Text className="text-md xl:text-xl text-pink-500">Defcon Juegos (Boardgames)</Text>
+              <Text className="text-md xl:text-xl text-pink-500">Lairen: La historia (Boardgames)</Text>
             </Stack>
           </Group>
         </Stack>
