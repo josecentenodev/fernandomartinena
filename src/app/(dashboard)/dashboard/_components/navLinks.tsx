@@ -21,8 +21,8 @@ export function NavLinks() {
         leftSection={<IconNews size="1rem" stroke={1.5} />}
       />
       <NavLink
-        href="/dashboard/settings"
-        label="Configuración"
+        href="/dashboard/banners"
+        label="Banners"
         leftSection={<IconSettings size="1rem" stroke={1.5} />}
       />
     </>

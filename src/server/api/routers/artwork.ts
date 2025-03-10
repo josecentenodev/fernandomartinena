@@ -11,6 +11,7 @@ export const artworkRouter = createTRPCRouter({
     try {
       const artworks = await ctx.db.artwork.findMany({
         select: {
+          id: true,
           title: true,
           description: true,
           imageUrl: true,
