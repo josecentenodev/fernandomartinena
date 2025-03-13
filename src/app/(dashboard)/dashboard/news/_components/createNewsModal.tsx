@@ -4,6 +4,7 @@ import { Modal, Button, TextInput, Textarea, Stack } from "@mantine/core";
 import { api } from "@/trpc/react";
 import { UploadButton } from "@/utils/uploadthing";
 import { showNotification } from "@mantine/notifications";
+import { ImageUpload } from "@/components/ImageUpload";
 
 export const CreateNewsModal = ({ children }: { children: React.ReactNode }) => {
   const [opened, setOpened] = useState(false);
@@ -57,18 +58,10 @@ export const CreateNewsModal = ({ children }: { children: React.ReactNode }) => 
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-          <UploadButton
-            endpoint="imageUploader"
-            onClientUploadComplete={(res) => {
-              setImageUrl(res?.[0]?.url ?? "");
-            }}
-            onUploadError={(error: Error) => {
-              showNotification({
-                title: "Error",
-                message: error.message,
-                color: "red",
-              });
-            }}
+          <ImageUpload
+            value={imageUrl}
+            onChange={setImageUrl}
+            label="Imagen de la noticia"
           />
           <Button onClick={handleSubmit} color="dark">
             Crear

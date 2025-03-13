@@ -41,6 +41,24 @@ export const ourFileRouter = {
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { uploadedBy: metadata.userId };
     }),
+
+  // New endpoint for multiple images (e.g. for products)
+  multiImageUploader: f({
+    image: {
+      maxFileSize: "4MB",
+      maxFileCount: 5,
+    },
+  })
+    .middleware(async ({ req }) => {
+      // eslint-disable-next-line @typescript-eslint/await-thenable
+      const user = await auth(req);
+      // eslint-disable-next-line @typescript-eslint/only-throw-error
+      if (!user) throw new UploadThingError("Unauthorized");
+      return { userId: user.id };
+    })
+    .onUploadComplete(async ({ metadata, file }) => {
+      return { uploadedBy: metadata.userId };
+    }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
