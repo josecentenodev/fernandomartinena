@@ -3,13 +3,13 @@ import React from "react";
 
 const AboutPageModal = () => {
   return (
-    <Group justify="flex-start" align="center" pb={'xl'} pl={'xl'}>
+    <Stack justify="center" align="center" p={'xl'}>
       <Image
-        src={"/fernando-martinena-ackerman.jpg"}
+        src={"/fernandomartinena.webp"}
         alt="Fernando Martinena"
         className="shadow-xl -rotate-6 w-64 h-64 xl:w-96 xl:h-96 object-cover"
       />
-      <Stack flex={1} px={'xl'}>
+      <Stack flex={1} p={'xl'}>
         <Stack pr={'xl'}>
           <Text className="bebas text-5xl text-pink-500" fw={700}>HELLO!</Text>
           <Text className="text-xl">
@@ -25,7 +25,7 @@ const AboutPageModal = () => {
             <Text span className="text-pink-500">Fantastic</Text> art pieces.
           </Text>
         </Stack>
-        <Stack>
+        <Stack mt={'xl'}>
           <Text className="text-2xl xl:text-3xl bebas">CLIENTS:</Text>
           <Group justify="flex-start" align="baseline">
             <Stack>
@@ -40,7 +40,7 @@ const AboutPageModal = () => {
           </Group>
         </Stack>
       </Stack>
-    </Group>
+    </Stack>
   );
 };
 

@@ -9,7 +9,7 @@ const PageContainer = ({
 }: Readonly<{ children: React.ReactNode }>) => {
   const [scroll, scrollTo] = useWindowScroll();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start gap-12 pt-24">
+    <main className="flex min-h-screen flex-col items-center justify-start xl:gap-12 xl:pt-24">
       <Banner />
       <Affix position={{ bottom: 20, right: 20 }}>
         <Transition transition="slide-up" mounted={scroll.y > 0}>

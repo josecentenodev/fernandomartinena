@@ -7,22 +7,42 @@ import AboutPage from "./aboutPageModal";
 
 const NavBarLinks = () => {
   return (
-    <div className="flex gap-5 text-2xl">
-      <Link href="/">home</Link>
+    <div className="flex items-center gap-8 mx-auto">
+      <Link 
+        href="/" 
+        className="font-bebas text-2xl transition-colors duration-200 hover:text-primary"
+      >
+        HOME
+      </Link>
       <UnstyledButton
-        className="bebas text-2xl hover:text-primary transition-colors duration-200"
+        className="font-bebas text-2xl transition-colors duration-200 hover:text-primary focus:outline-primary focus:text-primary"
         onClick={() =>
           modals.open({
-            size: "2xl",
+            size: "xl",
             children: <AboutPage />,
           })
         }
       >
         ABOUT
       </UnstyledButton>
-      <Link href="/news">news</Link>
-      <Link href="/shop">shop</Link>
-      <Link href="/contact">contact</Link>
+      <Link 
+        href="/news"
+        className="font-bebas text-2xl transition-colors duration-200 hover:text-primary"
+      >
+        NEWS
+      </Link>
+      <Link 
+        href="/shop"
+        className="font-bebas text-2xl transition-colors duration-200 hover:text-primary"
+      >
+        SHOP
+      </Link>
+      <Link 
+        href="/contact"
+        className="font-bebas text-2xl transition-colors duration-200 hover:text-primary"
+      >
+        CONTACT
+      </Link>
     </div>
   );
 };

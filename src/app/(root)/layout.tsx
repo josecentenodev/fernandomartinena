@@ -37,7 +37,9 @@ export default async function RootLayout({
               <Notifications />
               <ModalsProvider>
                 <NavBar />
-                {children}
+                <main className="pt-24">
+                  {children}
+                </main>
               </ModalsProvider>
             </TRPCReactProvider>
           </MantineProvider>
