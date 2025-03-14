@@ -142,5 +142,16 @@ export const newRouter = createTRPCRouter({
           message: `There was a problem in the server: ${error as string}`,
         });
       }
-    }),
+      }),
+  getCount: publicProcedure.query(async ({ ctx }) => {
+    try {
+      const count = await ctx.db.post.count();
+      return count;
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: `Failed to get post count: ${String(error)}`,
+      });
+    }
+  }),
 });

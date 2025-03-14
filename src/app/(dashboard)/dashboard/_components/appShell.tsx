@@ -1,10 +1,9 @@
 "use client";
-import { AppShell, Burger, Group, Stack, Text } from "@mantine/core";
+import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { NavLinks } from "./navLinks";
 import Link from "next/link";
 import Image from "next/image";
-
+import { Sidebar } from "./sidebar";
 export function BasicAppShell({ children }: { children: React.ReactNode }) {
   const [opened, { toggle }] = useDisclosure();
 
@@ -30,9 +29,7 @@ export function BasicAppShell({ children }: { children: React.ReactNode }) {
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">
-        <Stack>
-          <NavLinks />
-        </Stack>
+        <Sidebar />
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>
     </AppShell>

@@ -123,5 +123,16 @@ export const userRouter = createTRPCRouter({
         message: `No se ha podido realizar: ${error as string}`,
       });
     }
+    }),
+  getCount: publicProcedure.query(async ({ ctx }) => {
+    try {
+      const count = await ctx.db.user.count();
+      return count;
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: `Failed to get user count: ${String(error)}`,
+      });
+    }
   }),
 });

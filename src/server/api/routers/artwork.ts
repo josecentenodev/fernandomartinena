@@ -150,4 +150,15 @@ export const artworkRouter = createTRPCRouter({
         });
       }
     }),
+  getCount: publicProcedure.query(async ({ ctx }) => {
+    try {
+      const count = await ctx.db.artwork.count();
+      return count;
+    } catch (error) {
+      throw new trpc.TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: `Failed to get artwork count: ${String(error)}`,
+      });
+    }
+  }),
 });
