@@ -34,7 +34,7 @@ function MainLink({ icon, label, href, active }: MainLinkProps) {
         <ThemeIcon variant="light" size="sm">
           {icon}
         </ThemeIcon>
-        <Text size="sm" ml="sm">
+        <Text size="lg" ml="sm">
           {label}
         </Text>
       </div>
@@ -77,7 +77,7 @@ export function Sidebar() {
           if ('group' in item) {
             return (
               <Stack key={index} gap="xs">
-                <Text size="sm" fw={500} c="dimmed" mt="md">
+                <Text size="lg" fw={500} c="dimmed" mt="md">
                   {item.group}
                 </Text>
                 {item.links?.map((link) => (
