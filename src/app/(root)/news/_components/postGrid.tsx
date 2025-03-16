@@ -11,7 +11,7 @@ const PostsGrid = ({ posts }: { posts: Post[] }) => {
   if (!mainPost) return null;
 
   return (
-    <Stack gap="xl">
+    <Stack gap="xl" className="w-full xl:w-[1200px] 2xl:w-[1400px] mt-10 mx-auto">
       <MainPost post={mainPost} />
       {otherPosts.map((post) => (
         <PostCard key={post.id} post={post} />
